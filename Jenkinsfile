@@ -1,9 +1,27 @@
 pipeline {
    agent { label 'sdl04302_agent' }
+   tools {
+      maven 'M3'
+   }
    stages {
-      stage ('Hello from github') {
+      stage ('checkout') {
          steps {
-          echo "Hello World!"
+          git "https://github.com/sudhakar-mnsr/jenkinspipeline.git"
+         }
+      }
+      stage ('compile') {
+         steps {
+            sh 'mvn clean compile'
+         }
+      }
+      stage ('test') {
+         steps {
+            sh 'mvn test'
+         }
+      }
+      stage ('package') {
+         steps {
+            sh 'mvn package'
          }
       }
    }
