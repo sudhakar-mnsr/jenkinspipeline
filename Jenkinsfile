@@ -1,7 +1,7 @@
 pipeline {
    agent { label 'sdl04302_agent' }
    tools {
-      maven 'M3'
+      maven 'maven-3.5'
    }
    stages {
       stage ('checkout') {
